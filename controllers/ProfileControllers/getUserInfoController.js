@@ -11,7 +11,6 @@ const getUserInfoController = async (req,res) => {
         await User.findByIdAndUpdate(id, {lastVizitDate: Date.now()})
         const notes = await Note.find({user: id}).sort({date: -1}).skip(0).limit(20)
         const events = await Event.find({user: id})
-        throw new Error
         res.status(200).json({name: user.name, email: user.email, notesCount: user.notes, notes, events})
 
     } catch(e) {
